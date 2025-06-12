@@ -14,7 +14,7 @@ enum MainScreenState {
 }
 
 struct MainScreenView: View {
-	@StateObject private var viewModel = MainScreenViewModel()
+	@StateObject private var viewModel = MainScreenViewModel(service: ProductService())
 	
 	var body: some View {
 		Group {

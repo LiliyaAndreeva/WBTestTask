@@ -13,7 +13,7 @@ final class MainScreenViewModel: ObservableObject {
 	
 	private let service: ProductServiceProtocol
 	
-	init(service: ProductServiceProtocol = ProductService()) {
+	init(service: ProductServiceProtocol/* = ProductService()*/) {
 		self.service = service
 	}
 	
