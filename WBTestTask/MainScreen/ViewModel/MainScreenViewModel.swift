@@ -12,6 +12,7 @@ final class MainScreenViewModel: ObservableObject {
 	@Published var state: MainScreenState = .loading
 	
 	private let service: ProductServiceProtocol
+	private var products: [Product] = []
 	
 	init(service: ProductServiceProtocol) {
 		self.service = service
@@ -21,7 +22,7 @@ final class MainScreenViewModel: ObservableObject {
 		state = .loading
 		
 		do {
-			let products = try await service.fetchProducrts()
+			products = try await service.fetchProducrts()
 			print(products.count)
 			if products.isEmpty {
 				state = .empty
@@ -35,5 +36,10 @@ final class MainScreenViewModel: ObservableObject {
 	
 	func copyArticle(product: Product) {
 		UIPasteboard.general.string = product.sku
+	}
+	
+	func filterProduct(produts: [Product]) -> [Product] {
+		var filterProducts = products.compactMap{ $0 }
+		return filterProducts
 	}
 }
