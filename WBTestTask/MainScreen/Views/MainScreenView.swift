@@ -21,21 +21,29 @@ struct MainScreenView: View {
 			switch viewModel.state {
 			case .loading:
 				LoadingView()
-			case .error(let string):
+			case .error:
 				ErrorView()
 			case .empty:
 				EmptyView()
 			case .loaded(let products):
-				ProductGridView(products: products) { product in
-					viewModel.copyArticle(product: product)
-				}
+				ProductGridView(
+					products: products,
+					selectedFilter: viewModel.selectedFilter.rawValue,
+					onFilterChange: { newValue in
+						if let filter = MainScreenViewModel.FilterType(rawValue: newValue) {
+							viewModel.selectedFilter = filter
+							viewModel.applyFilter()
+						}
+					}
+				
+				)
 			}
 		}
+
 		.task {
 			await viewModel.fetchProducts()
 		}
 	}
-	
 }
 
 #Preview {

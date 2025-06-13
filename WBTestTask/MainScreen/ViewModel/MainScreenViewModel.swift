@@ -10,9 +10,16 @@ import SwiftUI
 @MainActor
 final class MainScreenViewModel: ObservableObject {
 	@Published var state: MainScreenState = .loading
+	@Published var selectedFilter: FilterType = .all
 	
 	private let service: ProductServiceProtocol
 	private var products: [Product] = []
+	
+	enum FilterType: Int {
+		case all
+		case withoutPrice
+	}
+
 	
 	init(service: ProductServiceProtocol) {
 		self.service = service
@@ -38,8 +45,18 @@ final class MainScreenViewModel: ObservableObject {
 		UIPasteboard.general.string = product.sku
 	}
 	
-	func filterProduct(produts: [Product]) -> [Product] {
-		var filterProducts = products.compactMap{ $0 }
+	func filterProduct(produсts: [Product]) -> [Product] {
+		var filterProducts = products.filter{ $0.price == 0 }
 		return filterProducts
+	}
+	
+	func applyFilter() {
+		switch selectedFilter {
+		case .all:
+			state = .loaded(products)
+		case .withoutPrice:
+			let filtered = filterProduct(produсts: products)
+			state = filtered.isEmpty ? .empty : .loaded(filtered)
+		}
 	}
 }
