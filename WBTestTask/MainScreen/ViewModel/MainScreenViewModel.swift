@@ -7,6 +7,13 @@
 
 import SwiftUI
 
+enum MainScreenState {
+	case loading
+	case error(String)
+	case empty
+	case loaded([Product])
+}
+
 @MainActor
 final class MainScreenViewModel: ObservableObject {
 	@Published var state: MainScreenState = .loading
@@ -46,7 +53,7 @@ final class MainScreenViewModel: ObservableObject {
 	}
 	
 	func filterProduct(produсts: [Product]) -> [Product] {
-		var filterProducts = products.filter{ $0.price == 0 }
+		let filterProducts = products.filter{ $0.price == 0 }
 		return filterProducts
 	}
 	

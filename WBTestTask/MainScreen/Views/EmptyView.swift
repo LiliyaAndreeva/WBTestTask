@@ -9,7 +9,11 @@ import SwiftUI
 
 struct EmptyView: View {
     var body: some View {
-        Text("EmptyView")
+		VStack {
+			Image("illustrationFlashlightGuide")
+				.customImageStyle()
+			Text("Ничего не найдено")
+		}
     }
 }
 

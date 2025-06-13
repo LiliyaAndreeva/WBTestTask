@@ -18,28 +18,26 @@ struct ProductGridView: View {
 	]
 	
 	var body: some View {
-		NavigationView {
-			VStack(alignment: .leading) {
-				Picker("Фильтр", selection:Binding(
-					get: { selectedFilter },
-				 set: { newValue in
-					 onFilterChange(newValue)
-				 }
-				)) {
-					ForEach(0..<filters.count, id: \.self) { index in
-						Text(filters[index])
+		VStack(alignment: .leading) {
+			Picker("Фильтр", selection:Binding(
+				get: { selectedFilter },
+				set: { newValue in
+					onFilterChange(newValue)
+				}
+			)) {
+				ForEach(0..<filters.count, id: \.self) { index in
+					Text(filters[index])
+				}
+			}
+			.pickerStyle(SegmentedPickerStyle())
+			.padding([.top, .horizontal])
+			ScrollView {
+				LazyVGrid(columns: colums, spacing: 8) {
+					ForEach(products) { product in
+						ProductCell(product: product)
 					}
 				}
-				.pickerStyle(SegmentedPickerStyle())
-				.padding([.top, .horizontal])
-				ScrollView {
-					LazyVGrid(columns: colums, spacing: 8) {
-						ForEach(products) { product in
-							ProductCell(product: product)
-						}
-					}
-					.background(Color.palletGray)
-				}
+				.background(Color.palletGray)
 			}
 		}
 	}
