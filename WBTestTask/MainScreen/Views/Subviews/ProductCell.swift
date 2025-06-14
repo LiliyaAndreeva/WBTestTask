@@ -66,7 +66,7 @@ private extension ProductCell {
 
 	var optionsButton: some View {
 		Button(action: onOptionsTap) {
-			Image(systemName: "ellipsis")
+			Image(systemName: ConstantStrings.ConstantImages.elipsisIcon)
 				.foregroundColor(.primary)
 				.frame(width: Sizes.optionsButtonSize, height: Sizes.optionsButtonSize)
 				.background(Color.gray.opacity(Sizes.Opacity.faint))
@@ -80,12 +80,12 @@ private extension ProductCell {
 	}
 
 	var SKUBlock: some View {
-		VStack(alignment: .leading, spacing: 2) {
-			Text("Арт. \(product.sku)")
+		VStack(alignment: .leading, spacing: Sizes.Padding.micro) {
+			Text("\(ConstantStrings.Product.skuPrefix) \(product.sku)")
 				.font(.sfRegular(size: Sizes.Text.small))
 				.opacity(Sizes.Opacity.secondaryText)
 			
-			Text("Арт. WB \(product.wbSku)")
+			Text("\(ConstantStrings.Product.wbSkuPrefix) \(product.wbSku)")
 				.font(.sfRegular(size: Sizes.Text.small))
 				.opacity(Sizes.Opacity.secondaryText)
 		}
@@ -95,9 +95,9 @@ private extension ProductCell {
 		VStack(spacing: Sizes.Padding.small) {
 			ForEach(
 				[
-					("Цена продавца до скидки", "\(Int(product.price)) ₽"),
-					("Скидка продавца", "\(Int(product.discountPercentage)) %"),
-					("Цена со скидкой", "\(Int(product.discountedPrice)) ₽")
+					(ConstantStrings.Price.original, "\(Int(product.price)) ₽"),
+					(ConstantStrings.Price.discount, "\(Int(product.discountPercentage)) %"),
+					(ConstantStrings.Price.discounted, "\(Int(product.discountedPrice)) ₽")
 				],
 				id: \.0
 			) { title, value in
@@ -145,17 +145,6 @@ private extension ProductCell {
 	}
 }
 
-#Preview {
-	ProductCell(product: Product(
-		id: 1,
-				 title: "Test",
-				 category: "cat",
-				 sku: "Арт. 1568161689",
-				 price: 100,
-				 discountPercentage: 10,
-				 thumbnail: ""
-	), onOptionsTap: {})
-}
 
 private extension String {
 	func width(usingFont font: UIFont) -> CGFloat {

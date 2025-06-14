@@ -9,21 +9,45 @@ import SwiftUI
 
 struct MainScreenView: View {
 	@StateObject private var viewModel = MainScreenViewModel(service: ProductService())
+	@State private var selectedProduct: Product? = nil
+	@State private var showActionSheet = false
+	private var selectedFilterBinding: Binding<Int> {
+		Binding<Int>(
+			get: { viewModel.selectedFilter.rawValue },
+			set: { newRawValue in
+				if let newFilter = MainScreenViewModel.FilterType(rawValue: newRawValue) {
+					viewModel.selectedFilter = newFilter
+					viewModel.applyFilter()
+				}
+			}
+		)
+	}
 	
 	var body: some View {
 		contentView
 			.navigationBarTitleDisplayMode(.inline)
 			.toolbar { navigationTitleToolbar }
-			.task { await viewModel.fetchProducts() }
-			.onAppear{ for family in UIFont.familyNames.sorted() {
-				print("📁 Font family: \(family)")
-				for name in UIFont.fontNames(forFamilyName: family) {
-					print("    🧷 Font name: \(name)")
+			.task {
+				await viewModel.fetchProducts()
+			}
+			.confirmationDialog(
+				"",
+				isPresented: $showActionSheet,
+				titleVisibility: .hidden
+			) {
+				if let product = selectedProduct {
+					Button(ConstantStrings.ActionSheet.copySKU) {
+						viewModel.copyArticle(product: product)
+					}
+					Button(ConstantStrings.ActionSheet.copyWBSKU) {
+						viewModel.copyArticleWB(product: product)
+					}
+					Button(ConstantStrings.ActionSheet.cancel, role: .cancel) { }
 				}
 			}
-		}
 	}
 }
+
 
 
 private extension MainScreenView {
@@ -50,12 +74,10 @@ private extension MainScreenView {
 		case .loaded(let products):
 			ProductGridView(
 				products: products,
-				selectedFilter: viewModel.selectedFilter.rawValue,
-				onFilterChange: { newValue in
-					if let filter = MainScreenViewModel.FilterType(rawValue: newValue) {
-						viewModel.selectedFilter = filter
-						viewModel.applyFilter()
-					}
+				selectedFilter: selectedFilterBinding,
+				onOptionsTap: { product in
+					selectedProduct = product
+					showActionSheet = true
 				}
 			)
 		}
@@ -63,8 +85,8 @@ private extension MainScreenView {
 	
 	var navigationTitleToolbar: some ToolbarContent {
 		ToolbarItem(placement: .principal) {
-			Text("Цены и скидки")
-				.font(.abeezeeRegular(size: 18))
+			Text(ConstantStrings.Navigation.title)
+				.font(.abeezeeRegular(size: Sizes.Text.double))
 				.frame(maxWidth: .infinity)
 				.multilineTextAlignment(.center)
 		}

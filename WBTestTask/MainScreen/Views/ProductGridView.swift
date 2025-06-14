@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ProductGridView: View {
 	let products: [Product]
-	let selectedFilter: Int
-	let onFilterChange: (Int) -> Void
-	private let filters = ["Все товары", "Товары без цены"]
+	@Binding var selectedFilter: Int
+	let onOptionsTap: (Product) -> Void
+	private let filters = [ConstantStrings.Filter.all, ConstantStrings.Filter.withoutPrice]
 	
 	private let colums = [
 		GridItem(.flexible())
@@ -19,12 +19,7 @@ struct ProductGridView: View {
 	
 	var body: some View {
 		VStack(alignment: .leading) {
-			Picker("Фильтр", selection:Binding(
-				get: { selectedFilter },
-				set: { newValue in
-					onFilterChange(newValue)
-				}
-			)) {
+			Picker(ConstantStrings.Filter.pickerTitle, selection: $selectedFilter) {
 				ForEach(0..<filters.count, id: \.self) { index in
 					Text(filters[index])
 				}
@@ -32,9 +27,11 @@ struct ProductGridView: View {
 			.pickerStyle(SegmentedPickerStyle())
 			.padding([.top, .horizontal])
 			ScrollView {
-				LazyVGrid(columns: colums, spacing: 8) {
+				LazyVGrid(columns: colums, spacing: Sizes.Padding.small) {
 					ForEach(products) { product in
-						ProductCell(product: product, onOptionsTap: {})
+						ProductCell(product: product, onOptionsTap: {
+							onOptionsTap(product)
+						})
 					}
 				}
 				.background(Color.palletGray)
@@ -43,34 +40,3 @@ struct ProductGridView: View {
 	}
 }
 
-//#Preview {
-//	ProductGridView(products: [
-//		Product(
-//			id: 1,
-//					 title: "Test",
-//					 category: "cat",
-//					 sku: "Арт. 1568161689",
-//					 price: 100,
-//					 discountPercentage: 10,
-//					 thumbnail: ""
-//				 ),
-//		Product(
-//			id: 1,
-//					 title: "Test",
-//					 category: "cat",
-//					 sku: "sku",
-//					 price: 100,
-//					 discountPercentage: 10,
-//					 thumbnail: ""
-//				 ),
-//		Product(
-//			id: 1,
-//					 title: "Test",
-//					 category: "cat",
-//					 sku: "sku",
-//					 price: 100,
-//					 discountPercentage: 10,
-//					 thumbnail: ""
-//				 )
-//	])
-//}

@@ -11,7 +11,7 @@ struct LoadingView: View {
 	@State private var isAnimating = false
 	
 	var body: some View {
-		Image("loadingIndicator")
+		Image(ConstantStrings.ConstantImages.loadingIndicator)
 			.rotationEffect(Angle(degrees: isAnimating ? 360 : 0))
 			.animation(
 				Animation.linear(duration: 1)

@@ -12,10 +12,10 @@ struct ErrorView: View {
 	let onRetry: () -> Void
 	
     var body: some View {
-		VStack(spacing: 8) {
-			Image("illustrationCircleError")
+		VStack(spacing: Sizes.Padding.small) {
+			Image(ConstantStrings.ConstantImages.errorIllustration)
 				.customImageStyle()
-			VStack(spacing: 24) {
+			VStack(spacing: Sizes.Padding.large) {
 				titleView
 				buttonView
 			}
@@ -27,11 +27,11 @@ private extension ErrorView {
 	
 	
 	var titleView: some View {
-			VStack(spacing: 4) {
-				Text("Что-то пошло не так")
+		VStack(spacing: Sizes.Padding.tiny) {
+			Text(ConstantStrings.Error.title)
 					.font(.abeezeeRegular(size: Sizes.Text.double).bold())
-				Text("Попробуйте позднее")
-					.opacity(0.6)
+			Text(ConstantStrings.Error.subtitle)
+					.opacity(Sizes.Opacity.secondaryText)
 					.font(.abeezeeRegular(size: Sizes.Text.double))
 			}
 		}
@@ -40,15 +40,15 @@ private extension ErrorView {
 		Button(action: {
 			onRetry()
 		}) {
-			HStack(spacing: 8) {
+			HStack(spacing: Sizes.Padding.small) {
 				Image("refreshIcon")
-				Text("Обновить")
+				Text(ConstantStrings.Error.refresh)
 			}
 			.foregroundColor(.white)
-			.padding(.horizontal, 24)
-			.padding(.vertical, 12)
+			.padding(.horizontal, Sizes.Padding.large)
+			.padding(.vertical, Sizes.Padding.medium)
 			.background(Color.purpleMain)
-			.cornerRadius(12)
+			.cornerRadius(Sizes.Radius.buttonCornerRadius)
 		}
 	}
 }
@@ -60,7 +60,7 @@ extension Image {
 			.resizable()
 			.aspectRatio(contentMode: .fill)
 			.clipped()
-			.frame(width: 240, height: 240)
+			.frame(width: Sizes.Width.imageError, height: Sizes.Width.imageError)
 	}
 }
 

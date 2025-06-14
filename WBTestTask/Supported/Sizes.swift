@@ -9,11 +9,6 @@ import Foundation
 
 enum Sizes {
 	
-	// MARK: - Image Sizes
-	
-	
-	
-	
 	// MARK: - Button Sizes
 	
 	static let optionsButtonSize: CGFloat = 32
@@ -22,6 +17,7 @@ enum Sizes {
 	enum Width {
 		static let image: CGFloat = 84
 		static let categoryLabel: CGFloat = 81
+		static let imageError: CGFloat = 240
 	}
 	
 	// MARK: - Heights
@@ -29,6 +25,7 @@ enum Sizes {
 		static let categoryLabel: CGFloat = 24
 		static let image: CGFloat = 116
 		static let priceRow: CGFloat = 20
+		static let imageError: CGFloat = 240
 	}
 
 	// MARK: - Corner Radius
@@ -41,11 +38,13 @@ enum Sizes {
 	// MARK: - Padding
 	
 	enum Padding {
+		static let micro: CGFloat = 2
 		static let tiny: CGFloat = 4
 		static let small: CGFloat = 8       // используется для spacing в VStacks
 		static let medium: CGFloat = 12     // horizontal padding
 		static let normal: CGFloat = 16     // горизонтальные + вертикальные отступы
 		static let vertical: CGFloat = 18   // top/bottom
+		static let large: CGFloat = 24
 		static let xLarge: CGFloat = 32     // для priceList нижний padding
 	}
 	

@@ -10,9 +10,9 @@ import SwiftUI
 struct EmptyView: View {
     var body: some View {
 		VStack {
-			Image("illustrationFlashlightGuide")
+			Image(ConstantStrings.ConstantImages.emptyIllustration)
 				.customImageStyle()
-			Text("Ничего не найдено")
+			Text(ConstantStrings.Empty.message)
 				.font(.sfRegular(size: Sizes.Text.double))
 		}
     }

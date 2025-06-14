@@ -34,6 +34,7 @@ final class MainScreenViewModel: ObservableObject {
 	
 	func fetchProducts() async {
 		state = .loading
+		selectedFilter = .all
 		
 		do {
 			products = try await service.fetchProducrts()
@@ -49,6 +50,9 @@ final class MainScreenViewModel: ObservableObject {
 	
 	func copyArticle(product: Product) {
 		UIPasteboard.general.string = product.sku
+	}
+	func copyArticleWB(product: Product) {
+		UIPasteboard.general.string = product.wbSku
 	}
 	
 	func filterProduct(produсts: [Product]) -> [Product] {
