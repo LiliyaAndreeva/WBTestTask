@@ -37,7 +37,7 @@
 		72E9BB792DFBD08800B112CE /* Exceptions for "WBTestTask" folder in "WBTestTask" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				Resources/Info.plist,
 			);
 			target = 72BC91842DFAB68100BDAA22 /* WBTestTask */;
 		};
@@ -55,11 +55,6 @@
 		72BC919D2DFAB68400BDAA22 /* WBTestTaskTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = WBTestTaskTests;
-			sourceTree = "<group>";
-		};
-		72BC91A72DFAB68400BDAA22 /* WBTestTaskUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = WBTestTaskUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -95,7 +90,6 @@
 			children = (
 				72BC91872DFAB68100BDAA22 /* WBTestTask */,
 				72BC919D2DFAB68400BDAA22 /* WBTestTaskTests */,
-				72BC91A72DFAB68400BDAA22 /* WBTestTaskUITests */,
 				72BC92172DFAD7E900BDAA22 /* Frameworks */,
 				72BC91862DFAB68100BDAA22 /* Products */,
 			);
@@ -179,9 +173,6 @@
 			);
 			dependencies = (
 				72BC91A62DFAB68400BDAA22 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				72BC91A72DFAB68400BDAA22 /* WBTestTaskUITests */,
 			);
 			name = WBTestTaskUITests;
 			packageProductDependencies = (
@@ -429,7 +420,7 @@
 				DEVELOPMENT_TEAM = ZUPCV4KWGZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WBTestTask/Info.plist;
+				INFOPLIST_FILE = WBTestTask/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -464,7 +455,7 @@
 				DEVELOPMENT_TEAM = ZUPCV4KWGZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WBTestTask/Info.plist;
+				INFOPLIST_FILE = WBTestTask/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

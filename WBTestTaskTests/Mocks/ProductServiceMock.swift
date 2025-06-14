@@ -9,6 +9,10 @@
 import Foundation
 @testable import WBTestTask
 
+enum MockError: Error {
+	case someError
+}
+
 final class ProductServiceMock: ProductServiceProtocol {
 	var result: Result<[Product], Error> = .success([])
 

@@ -25,6 +25,15 @@ final class CoreDataService {
 			}
 		}
 	}
+	
+	init(container: NSPersistentContainer) {
+		self.container = container
+		container.loadPersistentStores { description, error in
+			if let error = error {
+				fatalError("❌ CoreData error: \(error.localizedDescription)")
+			}
+		}
+	}
 
 	// MARK: - CRUD
 
