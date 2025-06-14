@@ -34,7 +34,7 @@ struct ProductGridView: View {
 			ScrollView {
 				LazyVGrid(columns: colums, spacing: 8) {
 					ForEach(products) { product in
-						ProductCell(product: product)
+						ProductCell(product: product, onOptionsTap: {})
 					}
 				}
 				.background(Color.palletGray)

@@ -29,10 +29,10 @@ private extension ErrorView {
 	var titleView: some View {
 			VStack(spacing: 4) {
 				Text("Что-то пошло не так")
-					.font(.customRegular(size: 18).bold())
+					.font(.abeezeeRegular(size: Sizes.Text.double).bold())
 				Text("Попробуйте позднее")
 					.opacity(0.6)
-					.font(.customRegular(size: 18))
+					.font(.abeezeeRegular(size: Sizes.Text.double))
 			}
 		}
 	

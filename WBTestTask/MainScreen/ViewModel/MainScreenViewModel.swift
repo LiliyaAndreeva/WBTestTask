@@ -37,7 +37,6 @@ final class MainScreenViewModel: ObservableObject {
 		
 		do {
 			products = try await service.fetchProducrts()
-			print(products.count)
 			if products.isEmpty {
 				state = .empty
 			} else {

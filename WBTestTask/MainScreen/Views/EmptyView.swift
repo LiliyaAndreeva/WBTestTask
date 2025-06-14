@@ -13,6 +13,7 @@ struct EmptyView: View {
 			Image("illustrationFlashlightGuide")
 				.customImageStyle()
 			Text("Ничего не найдено")
+				.font(.sfRegular(size: Sizes.Text.double))
 		}
     }
 }

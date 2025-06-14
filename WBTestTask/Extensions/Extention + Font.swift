@@ -7,7 +7,11 @@
 
 import SwiftUI
 extension Font {
-	static func customRegular(size: CGFloat) -> Font {
+	static func abeezeeRegular(size: CGFloat) -> Font {
 		.custom("ABeeZee-Regular", size: size)
+	}
+	
+	static func sfRegular(size: CGFloat) -> Font {
+		.custom("SFProText-Regular", size: size)
 	}
 }

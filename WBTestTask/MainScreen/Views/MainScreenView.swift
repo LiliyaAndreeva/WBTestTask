@@ -15,6 +15,13 @@ struct MainScreenView: View {
 			.navigationBarTitleDisplayMode(.inline)
 			.toolbar { navigationTitleToolbar }
 			.task { await viewModel.fetchProducts() }
+			.onAppear{ for family in UIFont.familyNames.sorted() {
+				print("📁 Font family: \(family)")
+				for name in UIFont.fontNames(forFamilyName: family) {
+					print("    🧷 Font name: \(name)")
+				}
+			}
+		}
 	}
 }
 
@@ -57,7 +64,7 @@ private extension MainScreenView {
 	var navigationTitleToolbar: some ToolbarContent {
 		ToolbarItem(placement: .principal) {
 			Text("Цены и скидки")
-				.font(.customRegular(size: 18))
+				.font(.abeezeeRegular(size: 18))
 				.frame(maxWidth: .infinity)
 				.multilineTextAlignment(.center)
 		}
