@@ -177,4 +177,23 @@ final class MainScreenViewModelTests: XCTestCase {
 		
 		XCTAssertEqual(UIPasteboard.general.string, "WB-SKU123")
 	}
+	
+	func testFetchProductsInNetworkSuccess() async throws {
+		let mock = NetworkServiceMock()
+		mock.mockResponse = ProductsResponse(products: [Product(
+			id: 1,
+			title: "Test",
+			category: "cat",
+			sku: "SKU123",
+			price: 0,
+			discountPercentage: 0,
+			thumbnail: ""
+		)])
+
+		let service = ProductService(networkService: mock)
+		let products = try await service.fetchProducrts()
+
+		XCTAssertEqual(products.count, 1)
+		XCTAssertEqual(products.first?.title, "Test")
+	}
 }
