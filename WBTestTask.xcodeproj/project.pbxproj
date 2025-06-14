@@ -18,23 +18,15 @@
 			remoteGlobalIDString = 72BC91842DFAB68100BDAA22;
 			remoteInfo = WBTestTask;
 		};
-		72BC91A52DFAB68400BDAA22 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 72BC917D2DFAB68100BDAA22 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 72BC91842DFAB68100BDAA22;
-			remoteInfo = WBTestTask;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		72BC91852DFAB68100BDAA22 /* WBTestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WBTestTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72BC919A2DFAB68400BDAA22 /* WBTestTaskTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WBTestTaskTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		72BC91A42DFAB68400BDAA22 /* WBTestTaskUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WBTestTaskUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		72E9BB792DFBD08800B112CE /* Exceptions for "WBTestTask" folder in "WBTestTask" target */ = {
+		72A4ADD22DFDCB0F008EEFDF /* Exceptions for "WBTestTask" folder in "WBTestTask" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Resources/Info.plist,
@@ -47,7 +39,7 @@
 		72BC91872DFAB68100BDAA22 /* WBTestTask */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				72E9BB792DFBD08800B112CE /* Exceptions for "WBTestTask" folder in "WBTestTask" target */,
+				72A4ADD22DFDCB0F008EEFDF /* Exceptions for "WBTestTask" folder in "WBTestTask" target */,
 			);
 			path = WBTestTask;
 			sourceTree = "<group>";
@@ -75,13 +67,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		72BC91A12DFAB68400BDAA22 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -100,7 +85,6 @@
 			children = (
 				72BC91852DFAB68100BDAA22 /* WBTestTask.app */,
 				72BC919A2DFAB68400BDAA22 /* WBTestTaskTests.xctest */,
-				72BC91A42DFAB68400BDAA22 /* WBTestTaskUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -161,26 +145,6 @@
 			productReference = 72BC919A2DFAB68400BDAA22 /* WBTestTaskTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		72BC91A32DFAB68400BDAA22 /* WBTestTaskUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 72BC91B42DFAB68400BDAA22 /* Build configuration list for PBXNativeTarget "WBTestTaskUITests" */;
-			buildPhases = (
-				72BC91A02DFAB68400BDAA22 /* Sources */,
-				72BC91A12DFAB68400BDAA22 /* Frameworks */,
-				72BC91A22DFAB68400BDAA22 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				72BC91A62DFAB68400BDAA22 /* PBXTargetDependency */,
-			);
-			name = WBTestTaskUITests;
-			packageProductDependencies = (
-			);
-			productName = WBTestTaskUITests;
-			productReference = 72BC91A42DFAB68400BDAA22 /* WBTestTaskUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -195,10 +159,6 @@
 						CreatedOnToolsVersion = 16.0;
 					};
 					72BC91992DFAB68400BDAA22 = {
-						CreatedOnToolsVersion = 16.0;
-						TestTargetID = 72BC91842DFAB68100BDAA22;
-					};
-					72BC91A32DFAB68400BDAA22 = {
 						CreatedOnToolsVersion = 16.0;
 						TestTargetID = 72BC91842DFAB68100BDAA22;
 					};
@@ -223,7 +183,6 @@
 			targets = (
 				72BC91842DFAB68100BDAA22 /* WBTestTask */,
 				72BC91992DFAB68400BDAA22 /* WBTestTaskTests */,
-				72BC91A32DFAB68400BDAA22 /* WBTestTaskUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -237,13 +196,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		72BC91982DFAB68400BDAA22 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		72BC91A22DFAB68400BDAA22 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -267,13 +219,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		72BC91A02DFAB68400BDAA22 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -281,11 +226,6 @@
 			isa = PBXTargetDependency;
 			target = 72BC91842DFAB68100BDAA22 /* WBTestTask */;
 			targetProxy = 72BC919B2DFAB68400BDAA22 /* PBXContainerItemProxy */;
-		};
-		72BC91A62DFAB68400BDAA22 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 72BC91842DFAB68100BDAA22 /* WBTestTask */;
-			targetProxy = 72BC91A52DFAB68400BDAA22 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -517,40 +457,6 @@
 			};
 			name = Release;
 		};
-		72BC91B52DFAB68400BDAA22 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZUPCV4KWGZ;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = swiftbook.ru.WBTestTaskUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = WBTestTask;
-			};
-			name = Debug;
-		};
-		72BC91B62DFAB68400BDAA22 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZUPCV4KWGZ;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = swiftbook.ru.WBTestTaskUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = WBTestTask;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -577,15 +483,6 @@
 			buildConfigurations = (
 				72BC91B22DFAB68400BDAA22 /* Debug */,
 				72BC91B32DFAB68400BDAA22 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		72BC91B42DFAB68400BDAA22 /* Build configuration list for PBXNativeTarget "WBTestTaskUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				72BC91B52DFAB68400BDAA22 /* Debug */,
-				72BC91B62DFAB68400BDAA22 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

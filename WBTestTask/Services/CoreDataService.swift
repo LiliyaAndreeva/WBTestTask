@@ -21,42 +21,59 @@ final class CoreDataService {
 		container = NSPersistentContainer(name: "WBTestTask")
 		container.loadPersistentStores { description, error in
 			if let error = error {
-				fatalError("❌ CoreData error: \(error.localizedDescription)")
+				fatalError("CoreData error: \(error.localizedDescription)")
 			}
 		}
 	}
 	
 	init(container: NSPersistentContainer) {
 		self.container = container
-		container.loadPersistentStores { description, error in
-			if let error = error {
-				fatalError("❌ CoreData error: \(error.localizedDescription)")
-			}
-		}
 	}
 
-	// MARK: - CRUD
-
-	func fetchItems() throws -> [Item] {
-		let request: NSFetchRequest<Item> = Item.fetchRequest()
-		request.sortDescriptors = [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)]
+	func fetchItems() throws -> [CDProduct] {
+		let request: NSFetchRequest<CDProduct> = CDProduct.fetchRequest()
 		return try viewContext.fetch(request)
-	}
-
-	func addItem() throws {
-		let newItem = Item(context: viewContext)
-		newItem.timestamp = Date()
-		try saveContext()
-	}
-
-	func delete(item: Item) throws {
-		viewContext.delete(item)
-		try saveContext()
 	}
 
 	func saveContext() throws {
 		if viewContext.hasChanges {
 			try viewContext.save()
+		}
+	}
+
+	func saveProducts(_ products: [Product]) throws {
+
+		let existingItems = try fetchItems()
+		for item in existingItems {
+			viewContext.delete(item)
+		}
+
+		for product in products {
+			let item = CDProduct(context: viewContext)
+			item.id = Int64(product.id)
+			item.title = product.title
+			item.category = product.category
+			item.sku = product.sku
+			item.price = product.price
+			item.discountPercentage = product.discountPercentage
+			item.thumbnail = product.thumbnail
+		}
+
+		try saveContext()
+	}
+	
+	func fetchStoredProducts() throws -> [Product] {
+		let items = try fetchItems()
+		return items.map {
+			Product(
+				id: Int($0.id),
+				title: $0.title ?? "",
+				category: $0.category ?? "",
+				sku: $0.sku ?? "",
+				price: $0.price,
+				discountPercentage: $0.discountPercentage,
+				thumbnail: $0.thumbnail ?? ""
+			)
 		}
 	}
 }

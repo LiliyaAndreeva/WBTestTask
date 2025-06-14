@@ -21,7 +21,14 @@ final class CoreDataServiceTests: XCTestCase {
 		let description = NSPersistentStoreDescription()
 		description.type = NSInMemoryStoreType
 		container.persistentStoreDescriptions = [description]
-
+		
+		let exp = expectation(description: "Load persistent stores")
+		container.loadPersistentStores { _, error in
+			XCTAssertNil(error)
+			exp.fulfill()
+		}
+		wait(for: [exp], timeout: 1.0)
+		
 		coreDataService = CoreDataService(container: container)
 	}
 
@@ -31,45 +38,38 @@ final class CoreDataServiceTests: XCTestCase {
 		super.tearDown()
 	}
 
-	func testAddItem() throws {
-		try coreDataService.addItem()
-		
-		let items = try coreDataService.fetchItems()
-		XCTAssertEqual(items.count, 1, "Должен добавиться 1 объект")
-		XCTAssertNotNil(items.first?.timestamp, "Timestamp не должен быть nil")
+	func testSaveAndFetchProducts() throws {
+		let products = [
+			Product(id: 1, title: "Test 1", category: "Category 1", sku: "SKU1", price: 10.0, discountPercentage: 5.0, thumbnail: "url1"),
+			Product(id: 2, title: "Test 2", category: "Category 2", sku: "SKU2", price: 20.0, discountPercentage: 10.0, thumbnail: "url2")
+		]
+
+		try coreDataService.saveProducts(products)
+		let fetched = try coreDataService.fetchStoredProducts()
+
+		XCTAssertEqual(fetched.count, 2)
+		XCTAssertEqual(fetched[0].title, "Test 1")
+		XCTAssertEqual(fetched[1].sku, "SKU2")
 	}
 
-	func testFetchItemsSorted() throws {
-		let context = coreDataService.viewContext
-		
-		let item1 = Item(context: context)
-		item1.timestamp = Date(timeIntervalSince1970: 1000)
-		
-		let item2 = Item(context: context)
-		item2.timestamp = Date(timeIntervalSince1970: 500)
-		
-		let item3 = Item(context: context)
-		item3.timestamp = Date(timeIntervalSince1970: 1500)
-		
-		try coreDataService.saveContext()
-		
-		let fetched = try coreDataService.fetchItems()
-		let timestamps = fetched.compactMap { $0.timestamp?.timeIntervalSince1970 }
-		
-		XCTAssertEqual(timestamps, timestamps.sorted())
+	func testSaveProductsOverridesOldOnes() throws {
+		let products1 = [
+			Product(id: 1, title: "Old", category: "OldCat", sku: "OLD", price: 5.0, discountPercentage: 2.0, thumbnail: "oldurl")
+		]
+		try coreDataService.saveProducts(products1)
+
+		let products2 = [
+			Product(id: 2, title: "New", category: "NewCat", sku: "NEW", price: 15.0, discountPercentage: 3.0, thumbnail: "newurl")
+		]
+		try coreDataService.saveProducts(products2)
+
+		let fetched = try coreDataService.fetchStoredProducts()
+
+		XCTAssertEqual(fetched.count, 1)
+		XCTAssertEqual(fetched[0].id, 2)
+		XCTAssertEqual(fetched[0].title, "New")
 	}
 
-	func testDeleteItem() throws {
-		try coreDataService.addItem()
-		var items = try coreDataService.fetchItems()
-		XCTAssertEqual(items.count, 1)
-
-		let item = items.first!
-		try coreDataService.delete(item: item)
-		
-		items = try coreDataService.fetchItems()
-		XCTAssertEqual(items.count, 0, "После удаления не должно остаться элементов")
-	}
 	
 	func testSaveContextWithoutChangesDoesNotThrow() throws {
 		XCTAssertNoThrow(try coreDataService.saveContext())

@@ -21,7 +21,7 @@ final class ProductService: ProductServiceProtocol {
 		}
 
 	func fetchProducrts() async throws -> [Product] {
-		guard let url = URL(string: "https://dummyjson.com/products") else {
+		guard let url = URL(string: "https://dummyjson.com/products?limit=10") else {
 			throw URLError(.badURL)
 		}
 		let responce = try await networkService.fetch(ProductsResponse.self, from: url)

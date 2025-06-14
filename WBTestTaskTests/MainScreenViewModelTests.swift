@@ -50,7 +50,7 @@ final class MainScreenViewModelTests: XCTestCase {
 
 		switch await viewModel.state {
 		case .error(let message):
-			XCTAssertEqual(message, "Не удалось загрузить")
+			XCTAssertEqual(message, "Нет данных")
 		default:
 			XCTFail("State should be error")
 		}
