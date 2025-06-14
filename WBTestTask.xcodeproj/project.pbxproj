@@ -37,7 +37,7 @@
 		72E9BB792DFBD08800B112CE /* Exceptions for "WBTestTask" folder in "WBTestTask" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				Resources/Info.plist,
 			);
 			target = 72BC91842DFAB68100BDAA22 /* WBTestTask */;
 		};
@@ -420,7 +420,7 @@
 				DEVELOPMENT_TEAM = ZUPCV4KWGZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WBTestTask/Info.plist;
+				INFOPLIST_FILE = WBTestTask/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -455,7 +455,7 @@
 				DEVELOPMENT_TEAM = ZUPCV4KWGZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WBTestTask/Info.plist;
+				INFOPLIST_FILE = WBTestTask/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
