@@ -57,11 +57,6 @@
 			path = WBTestTaskTests;
 			sourceTree = "<group>";
 		};
-		72BC91A72DFAB68400BDAA22 /* WBTestTaskUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = WBTestTaskUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +90,6 @@
 			children = (
 				72BC91872DFAB68100BDAA22 /* WBTestTask */,
 				72BC919D2DFAB68400BDAA22 /* WBTestTaskTests */,
-				72BC91A72DFAB68400BDAA22 /* WBTestTaskUITests */,
 				72BC92172DFAD7E900BDAA22 /* Frameworks */,
 				72BC91862DFAB68100BDAA22 /* Products */,
 			);
@@ -179,9 +173,6 @@
 			);
 			dependencies = (
 				72BC91A62DFAB68400BDAA22 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				72BC91A72DFAB68400BDAA22 /* WBTestTaskUITests */,
 			);
 			name = WBTestTaskUITests;
 			packageProductDependencies = (
