@@ -33,9 +33,22 @@
 		72BC91A42DFAB68400BDAA22 /* WBTestTaskUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WBTestTaskUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		72E9BB792DFBD08800B112CE /* Exceptions for "WBTestTask" folder in "WBTestTask" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 72BC91842DFAB68100BDAA22 /* WBTestTask */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		72BC91872DFAB68100BDAA22 /* WBTestTask */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				72E9BB792DFBD08800B112CE /* Exceptions for "WBTestTask" folder in "WBTestTask" target */,
+			);
 			path = WBTestTask;
 			sourceTree = "<group>";
 		};
@@ -416,6 +429,7 @@
 				DEVELOPMENT_TEAM = ZUPCV4KWGZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WBTestTask/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -450,6 +464,7 @@
 				DEVELOPMENT_TEAM = ZUPCV4KWGZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WBTestTask/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

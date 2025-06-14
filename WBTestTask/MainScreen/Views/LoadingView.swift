@@ -8,11 +8,23 @@
 import SwiftUI
 
 struct LoadingView: View {
-    var body: some View {
-        Text("LoadingView")
-    }
+	@State private var isAnimating = false
+	
+	var body: some View {
+		Image(ConstantStrings.ConstantImages.loadingIndicator)
+			.rotationEffect(Angle(degrees: isAnimating ? 360 : 0))
+			.animation(
+				Animation.linear(duration: 1)
+					.repeatForever(autoreverses: false),
+				value: isAnimating
+			)
+			.onAppear {
+				isAnimating = true
+			}
+	}
 }
 
 #Preview {
     LoadingView()
 }
+

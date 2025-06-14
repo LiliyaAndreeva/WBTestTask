@@ -9,24 +9,34 @@ import SwiftUI
 
 struct ProductGridView: View {
 	let products: [Product]
-	let onCopy: (Product) -> Void
-
-	private let columns = [
-		GridItem(.flexible()),
+	@Binding var selectedFilter: Int
+	let onOptionsTap: (Product) -> Void
+	private let filters = [ConstantStrings.Filter.all, ConstantStrings.Filter.withoutPrice]
+	
+	private let colums = [
 		GridItem(.flexible())
 	]
-
+	
 	var body: some View {
-		ScrollView {
-			LazyVGrid(columns: columns, spacing: 16) {
-				ForEach(products) { product in
-					ProductCell(product: product)
-						.onTapGesture {
-							onCopy(product)
-						}
+		VStack(alignment: .leading) {
+			Picker(ConstantStrings.Filter.pickerTitle, selection: $selectedFilter) {
+				ForEach(0..<filters.count, id: \.self) { index in
+					Text(filters[index])
 				}
 			}
-			.padding()
+			.pickerStyle(SegmentedPickerStyle())
+			.padding([.top, .horizontal])
+			ScrollView {
+				LazyVGrid(columns: colums, spacing: Sizes.Padding.small) {
+					ForEach(products) { product in
+						ProductCell(product: product, onOptionsTap: {
+							onOptionsTap(product)
+						})
+					}
+				}
+				.background(Color.palletGray)
+			}
 		}
 	}
 }
+

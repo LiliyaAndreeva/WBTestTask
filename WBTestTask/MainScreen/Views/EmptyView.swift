@@ -9,7 +9,12 @@ import SwiftUI
 
 struct EmptyView: View {
     var body: some View {
-        Text("EmptyView")
+		VStack {
+			Image(ConstantStrings.ConstantImages.emptyIllustration)
+				.customImageStyle()
+			Text(ConstantStrings.Empty.message)
+				.font(.sfRegular(size: Sizes.Text.double))
+		}
     }
 }
 
