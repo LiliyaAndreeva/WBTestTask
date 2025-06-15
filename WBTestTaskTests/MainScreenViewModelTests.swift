@@ -28,7 +28,8 @@ final class MainScreenViewModelTests: XCTestCase {
 			]
 		)
 
-		let viewModel = await MainScreenViewModel(service: mockService)
+		let coreDataService = CoreDataService(inMemory: true)
+		let viewModel = await MainScreenViewModel(service: mockService, coreData: coreDataService)
 
 		await viewModel.fetchProducts()
 
@@ -44,13 +45,15 @@ final class MainScreenViewModelTests: XCTestCase {
 		let mockService = ProductServiceMock()
 		mockService.result = .failure(MockError.someError)
 
-		let viewModel = await MainScreenViewModel(service: mockService)
+		
+		let coreDataService = CoreDataService(inMemory: true)
+		let viewModel = await MainScreenViewModel(service: mockService, coreData: coreDataService)
 
 		await viewModel.fetchProducts()
 
 		switch await viewModel.state {
 		case .error(let message):
-			XCTAssertEqual(message, "Не удалось загрузить")
+			XCTAssertEqual(message, "Нет данных")
 		default:
 			XCTFail("State should be error")
 		}
@@ -60,7 +63,8 @@ final class MainScreenViewModelTests: XCTestCase {
 		let mockService = ProductServiceMock()
 		mockService.result = .success([])
 
-		let viewModel = await MainScreenViewModel(service: mockService)
+		let coreDataService = CoreDataService(inMemory: true)
+		let viewModel = await MainScreenViewModel(service: mockService, coreData: coreDataService)
 
 		await viewModel.fetchProducts()
 
@@ -98,7 +102,8 @@ final class MainScreenViewModelTests: XCTestCase {
 			]
 		)
 
-		let viewModel = await MainScreenViewModel(service: mockService)
+		let coreDataService = CoreDataService(inMemory: true)
+		let viewModel = await MainScreenViewModel(service: mockService, coreData: coreDataService)
 		await viewModel.fetchProducts()
 		
 		await MainActor.run {
@@ -124,7 +129,8 @@ final class MainScreenViewModelTests: XCTestCase {
 		]
 		mockService.result = .success(products)
 
-		let viewModel = await MainScreenViewModel(service: mockService)
+		let coreDataService = CoreDataService(inMemory: true)
+		let viewModel = await MainScreenViewModel(service: mockService, coreData: coreDataService)
 		await viewModel.fetchProducts()
 
 		await MainActor.run {
@@ -142,7 +148,8 @@ final class MainScreenViewModelTests: XCTestCase {
 	
 	func testCopyArticleSetsPasteboard() async {
 		let mockService = ProductServiceMock()
-		let viewModel = await MainScreenViewModel(service: mockService)
+		let coreDataService = CoreDataService(inMemory: true)
+		let viewModel = await MainScreenViewModel(service: mockService, coreData: coreDataService)
 
 		let product = Product(
 			id: 1,
@@ -161,7 +168,8 @@ final class MainScreenViewModelTests: XCTestCase {
 
 	func testCopyArticleWBSetsPasteboard() async {
 		let mockService = ProductServiceMock()
-		let viewModel = await MainScreenViewModel(service: mockService)
+		let coreDataService = CoreDataService(inMemory: true)
+		let viewModel = await MainScreenViewModel(service: mockService, coreData: coreDataService)
 		
 		let product = Product(
 			id: 1,

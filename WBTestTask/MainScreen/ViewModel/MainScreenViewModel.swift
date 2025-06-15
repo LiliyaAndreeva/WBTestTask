@@ -20,6 +20,7 @@ final class MainScreenViewModel: ObservableObject {
 	@Published var selectedFilter: FilterType = .all
 	
 	private let service: ProductServiceProtocol
+	private let coreData: CoreDataService
 	private var products: [Product] = []
 	
 	enum FilterType: Int {
@@ -27,39 +28,40 @@ final class MainScreenViewModel: ObservableObject {
 		case withoutPrice
 	}
 
-	
-	init(service: ProductServiceProtocol) {
+	init(service: ProductServiceProtocol, coreData: CoreDataService) {
 		self.service = service
+		self.coreData = coreData
 	}
-	
+
 	func fetchProducts() async {
 		state = .loading
 		selectedFilter = .all
-		
+
 		do {
-			products = try await service.fetchProducrts()
-			if products.isEmpty {
-				state = .empty
-			} else {
-				state = .loaded(products)
-			}
+			let loaded = try await service.fetchProducrts()
+			products = loaded
+			state = loaded.isEmpty ? .empty : .loaded(loaded)
+
+			try? coreData.saveProducts(loaded)
 		} catch {
-			state = .error("Не удалось загрузить")
+			do {
+				let cached = try coreData.fetchStoredProducts()
+				products = cached
+				state = cached.isEmpty ? .error("Нет данных") : .loaded(cached)
+			} catch {
+				state = .error("Ошибка загрузки данных из памяти")
+			}
 		}
 	}
-	
+
 	func copyArticle(product: Product) {
 		UIPasteboard.general.string = product.sku
 	}
+
 	func copyArticleWB(product: Product) {
 		UIPasteboard.general.string = product.wbSku
 	}
-	
-	func filterProduct(produсts: [Product]) -> [Product] {
-		let filterProducts = products.filter{ $0.price == 0 }
-		return filterProducts
-	}
-	
+
 	func applyFilter() {
 		switch selectedFilter {
 		case .all:
@@ -68,5 +70,12 @@ final class MainScreenViewModel: ObservableObject {
 			let filtered = filterProduct(produсts: products)
 			state = filtered.isEmpty ? .empty : .loaded(filtered)
 		}
+	}
+}
+
+private extension MainScreenViewModel {
+	func filterProduct(produсts: [Product]) -> [Product] {
+		let filterProducts = products.filter{ $0.price == 0 }
+		return filterProducts
 	}
 }

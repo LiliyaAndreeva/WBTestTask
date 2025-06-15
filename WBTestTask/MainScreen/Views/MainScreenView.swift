@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct MainScreenView: View {
-	@StateObject private var viewModel = MainScreenViewModel(service: ProductService())
+
+	@StateObject private var viewModel = MainScreenViewModel(
+			service: ProductService(),
+			coreData: CoreDataService()
+		)
 	@State private var selectedProduct: Product? = nil
 	@State private var showActionSheet = false
+
 	private var selectedFilterBinding: Binding<Int> {
 		Binding<Int>(
 			get: { viewModel.selectedFilter.rawValue },
@@ -22,6 +27,7 @@ struct MainScreenView: View {
 			}
 		)
 	}
+	
 	
 	var body: some View {
 		contentView
@@ -93,6 +99,3 @@ private extension MainScreenView {
 	}
 }
 
-#Preview {
-	MainScreenView()
-}
