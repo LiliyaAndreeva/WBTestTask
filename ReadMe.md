@@ -37,4 +37,4 @@ iOS-приложение реализует экран со списком то�
 
 ## 📸 Скриншоты
 
-| ![Экраны] (https://github.com/LiliyaAndreeva/WBTestTask/blob/integrateCoreData/WBTestTask/ScreenShots/Screens.png)
+![Экраны](https://github.com/LiliyaAndreeva/WBTestTask/blob/integrateCoreData/WBTestTask/ScreenShots/Screens.png)
