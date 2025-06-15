@@ -1,10 +1,3 @@
-//
-//  ReadMe.swift
-//  WBTestTask
-//
-//  Created by Лилия Андреева on 15.06.2025.
-//
-
 # WB Partners — Тестовое задание (iOS)
 
 ## Описание
@@ -44,4 +37,4 @@ iOS-приложение реализует экран со списком то�
 
 ## 📸 Скриншоты
 
-| ![Main](Screenshots/screenshot1.png)
+| ![Экраны] (https://github.com/LiliyaAndreeva/WBTestTask/blob/integrateCoreData/WBTestTask/ScreenShots/Screens.png)
