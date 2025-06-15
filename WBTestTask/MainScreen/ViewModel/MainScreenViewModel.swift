@@ -28,7 +28,7 @@ final class MainScreenViewModel: ObservableObject {
 		case withoutPrice
 	}
 
-	init(service: ProductServiceProtocol, coreData: CoreDataService = .shared) {
+	init(service: ProductServiceProtocol, coreData: CoreDataService) {
 		self.service = service
 		self.coreData = coreData
 	}

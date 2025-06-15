@@ -12,29 +12,14 @@ import CoreData
 final class CoreDataServiceTests: XCTestCase {
 
 	var coreDataService: CoreDataService!
-	var container: NSPersistentContainer!
 
 	override func setUp() {
 		super.setUp()
-		
-		container = NSPersistentContainer(name: "WBTestTask")
-		let description = NSPersistentStoreDescription()
-		description.type = NSInMemoryStoreType
-		container.persistentStoreDescriptions = [description]
-		
-		let exp = expectation(description: "Load persistent stores")
-		container.loadPersistentStores { _, error in
-			XCTAssertNil(error)
-			exp.fulfill()
-		}
-		wait(for: [exp], timeout: 1.0)
-		
-		coreDataService = CoreDataService(container: container)
+		coreDataService = CoreDataService(inMemory: true)
 	}
 
 	override func tearDown() {
 		coreDataService = nil
-		container = nil
 		super.tearDown()
 	}
 

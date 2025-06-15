@@ -9,35 +9,60 @@ import Foundation
 import CoreData
 
 final class CoreDataService {
-	static let shared = CoreDataService()
+	//static let shared = CoreDataService()
 
 	private let container: NSPersistentContainer
+	private let context: NSManagedObjectContext
 
 	var viewContext: NSManagedObjectContext {
-		container.viewContext
-	}
-
-	private init() {
-		container = NSPersistentContainer(name: "WBTestTask")
-		container.loadPersistentStores { description, error in
-			if let error = error {
-				fatalError("CoreData error: \(error.localizedDescription)")
-			}
-		}
+		context
 	}
 	
-	init(container: NSPersistentContainer) {
-		self.container = container
+	init(inMemory: Bool = false) {
+		container = NSPersistentContainer(name: "WBTestTask")
+		
+		if inMemory {
+			let description = NSPersistentStoreDescription()
+			description.type = NSInMemoryStoreType
+			container.persistentStoreDescriptions = [description]
+		}
+
+		let semaphore = DispatchSemaphore(value: 0)
+		container.loadPersistentStores { _, error in
+			if let error = error {
+				fatalError("❌ Failed to load store: \(error)")
+			}
+			semaphore.signal()
+		}
+		semaphore.wait()
+
+		context = container.viewContext
+		context.automaticallyMergesChangesFromParent = true
+		context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
 	}
+
+//	private init() {
+//		container = NSPersistentContainer(name: "WBTestTask")
+//		container.loadPersistentStores { description, error in
+//			if let error = error {
+//				fatalError("CoreData error: \(error.localizedDescription)")
+//			}
+//		}
+//	}
+//	
+//	init(container: NSPersistentContainer) {
+//		self.container = container
+//	}
 
 	func fetchItems() throws -> [CDProduct] {
 		let request: NSFetchRequest<CDProduct> = CDProduct.fetchRequest()
-		return try viewContext.fetch(request)
+		request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
+		return try context.fetch(request)
 	}
 
 	func saveContext() throws {
-		if viewContext.hasChanges {
-			try viewContext.save()
+		if context.hasChanges {
+			try context.save()
 		}
 	}
 
@@ -45,11 +70,11 @@ final class CoreDataService {
 
 		let existingItems = try fetchItems()
 		for item in existingItems {
-			viewContext.delete(item)
+			context.delete(item)
 		}
 
 		for product in products {
-			let item = CDProduct(context: viewContext)
+			let item = CDProduct(context: context)
 			item.id = Int64(product.id)
 			item.title = product.title
 			item.category = product.category

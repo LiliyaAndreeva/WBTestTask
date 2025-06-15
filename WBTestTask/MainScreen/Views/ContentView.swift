@@ -9,12 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
 
-	private let viewContext = CoreDataService.shared.viewContext
-
 	var body: some View {
 		NavigationView {
 			MainScreenView()
-				.environment(\.managedObjectContext, viewContext)
 		}
 	}
 }
