@@ -29,17 +29,29 @@
 		72A4ADD22DFDCB0F008EEFDF /* Exceptions for "WBTestTask" folder in "WBTestTask" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				ReadMe.md,
 				Resources/Info.plist,
 			);
 			target = 72BC91842DFAB68100BDAA22 /* WBTestTask */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		72AAB22A2DFE991700B8EF52 /* Exceptions for "WBTestTask" folder in "Compile Sources" phase from "WBTestTask" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = 72BC91812DFAB68100BDAA22 /* Sources */;
+			membershipExceptions = (
+				ReadMe.md,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		72BC91872DFAB68100BDAA22 /* WBTestTask */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				72A4ADD22DFDCB0F008EEFDF /* Exceptions for "WBTestTask" folder in "WBTestTask" target */,
+				72AAB22A2DFE991700B8EF52 /* Exceptions for "WBTestTask" folder in "Compile Sources" phase from "WBTestTask" target */,
 			);
 			path = WBTestTask;
 			sourceTree = "<group>";
