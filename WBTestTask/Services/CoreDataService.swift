@@ -9,7 +9,6 @@ import Foundation
 import CoreData
 
 final class CoreDataService {
-	//static let shared = CoreDataService()
 
 	private let container: NSPersistentContainer
 	private let context: NSManagedObjectContext
@@ -40,19 +39,6 @@ final class CoreDataService {
 		context.automaticallyMergesChangesFromParent = true
 		context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
 	}
-
-//	private init() {
-//		container = NSPersistentContainer(name: "WBTestTask")
-//		container.loadPersistentStores { description, error in
-//			if let error = error {
-//				fatalError("CoreData error: \(error.localizedDescription)")
-//			}
-//		}
-//	}
-//	
-//	init(container: NSPersistentContainer) {
-//		self.container = container
-//	}
 
 	func fetchItems() throws -> [CDProduct] {
 		let request: NSFetchRequest<CDProduct> = CDProduct.fetchRequest()
